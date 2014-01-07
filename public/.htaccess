@@ -1,0 +1,6 @@
+Options FollowSymLinks
+RewriteEngine On
+RewriteRule ^home 2.html
+RewriteRule ^home index.html
+RewriteRule ^title 0.html
+RewriteRule ^test2 1.html

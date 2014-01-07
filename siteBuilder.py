@@ -1,12 +1,10 @@
 import os, re, json, markdown
 
-rawPath = "raw/"
-outPath = "out/"
-templatesPath = "templates/"
+settings = json.load(open("settings.json", "r"))
 
-settings = {
-	'siteHeader': "Mort's Ramblings"
-}
+rawPath = settings['rawPath']
+outPath = settings['outPath']
+templatesPath = settings['templatesPath']
 
 #parse single entry, add things like images
 def parseEntry(currentEntry, entries):
@@ -57,13 +55,23 @@ def makeFile(currentEntry, entries):
 	], open(templatesPath+"index.html", "r").read())
 
 	#write results to file
-	fileName = outPath+currentEntry['fileName']
+	fileName = currentEntry['fileName']
 	fileName = fileName.replace("json", "html")
-	hFile = open(fileName, "w")
+	hFile = open(outPath+fileName, "w")
 	hFile.write(indexStr)
 	hFile.close
 
+	#write rule to htaccess
+	with open(outPath+".htaccess", "a") as htaccess:
+		htaccess.write("RewriteRule ^"+currentEntry['slug']+" "+fileName+"\r\n")
+		htaccess.close()
+
 def main():
+	with open(outPath+".htaccess", "w") as htaccess:
+		htaccess.write("Options FollowSymLinks\r\n")
+		htaccess.write("RewriteEngine On\r\n")
+		htaccess.close()
+
 	entries = os.listdir(rawPath)
 
 	entriesSort = []
@@ -77,4 +85,7 @@ def main():
 
 	for entry in entriesSort:
 		makeFile(entry, entriesSort)
+		if (entry['slug'] == settings['defaultPage']):
+			entry['fileName'] = "index.html"
+			makeFile(entry, entriesSort) 
 main()

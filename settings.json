@@ -1,0 +1,7 @@
+{
+	"siteHeader": "Mort's Ramblings",
+	"rawPath": "raw/",
+	"outPath": "public/",
+	"templatesPath": "templates/",
+	"defaultPage": "home"
+}
