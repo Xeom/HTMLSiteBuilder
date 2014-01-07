@@ -12,42 +12,49 @@ settings = {
 def parseEntry(currentEntry, entries):
 	return currentEntry
 
+def addArgs(args, str):
+	for arg in args:
+		str = str.replace("{"+arg[0]+"}", arg[1])
+	return str
+
 #parse template, returns the completed html file
 def makeFile(currentEntry, entries):
 	currentEntry = parseEntry(currentEntry, entries)
-
-	#make menu
 	
-	#buttons:
-	buttons = ""
+	#buttons
+	buttonStr = ""
+	buttonTemplate = open(templatesPath+"button.html", "r").read()
 	for entry in entries:
 		if (entry['type'] == "page"):
-			buttonStr = open(templatesPath+"button.html", "r").read()
-			buttonStr = buttonStr.replace("{link}", entry['slug'])
-			buttonStr = buttonStr.replace("{title}", entry['title'])
-			if (entry['slug'] == currentEntry['slug']):
-				buttonStr = buttonStr.replace("{current}", " current")
-			else:
-				buttonStr = buttonStr.replace("{current}", "")
-			buttons += buttonStr
-	#buttons made, now for the rest of the menu
-	menuStr = open(templatesPath+"menu.html", "r").read()
-	menuStr = menuStr.replace("{buttons}", buttons)
-	menuStr = menuStr.replace("{siteHeader}", settings['siteHeader'])
+			if (entry['slug'] == currentEntry['slug']): classMod = " current"
+			else: classMod = ""
+			buttonStr += addArgs([
+				["link", entry['slug']],
+				["title", entry['title']],
+				["current", classMod]
+			], buttonTemplate)
+			
+	#rest of the menu
+	menuStr = addArgs([
+		["buttons", buttonStr],
+		["siteHeader", settings['siteHeader']]
+	], open(templatesPath+"menu.html", "r").read())
 
-	#menu made, now time for content
+	#content
 	contentStr = currentEntry['content']
 	
-	#content made, now title
-	titleStr = open(templatesPath+"title.html", "r").read()
-	titleStr = titleStr.replace("{entryTitle}", currentEntry['title'])
-	titleStr = titleStr.replace("{siteHeader}", settings['siteHeader'])
+	#title
+	titleStr = addArgs([
+		["entryTitle", currentEntry['title']],
+		["siteHeader", settings['siteHeader']]
+	], open(templatesPath+"title.html", "r").read())
 
 	#title made, now put it all together
-	indexStr = open(templatesPath+"index.html", "r").read()
-	indexStr = indexStr.replace("{menu}", menuStr)
-	indexStr = indexStr.replace("{title}", titleStr)
-	indexStr = indexStr.replace("{content}", contentStr)
+	indexStr = addArgs([
+		["menu", menuStr],
+		["title", titleStr],
+		["content", contentStr]
+	], open(templatesPath+"index.html", "r").read())
 
 	#write results to file
 	fileName = outPath+currentEntry['fileName']
