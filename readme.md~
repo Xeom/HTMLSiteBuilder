@@ -11,13 +11,13 @@ You may need to use "pip" instead of "pip3".
 Documentation
 -------------
 Each post or page is stored in a json file like so:
-    {
-    	"title": "display name",
-    	"slug": "url-name",
-    	"sort": sort order (number),
-    	"type": "page or post",
-    	"content": "the actual content. Make sure to escape your quotation marks!"
-    } 
+{
+	"title": "display name",
+	"slug": "url-name",
+	"sort": sort order (number),
+	"type": "page or post",
+	"content": "the actual content. Make sure to escape your quotation marks!"
+} 
 
 The "content" field should be formatted as markdown.
 
