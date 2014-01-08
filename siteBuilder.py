@@ -115,4 +115,11 @@ def main():
 		if (entry['slug'] == settings['defaultPage']):
 			entry['fileName'] = "index.html"
 			makeFile(entry, entriesSort) 
+
+	#theme
+	themeFiles = os.listdir(settings['themesPath']+settings['theme'])
+	hStyleFile = open(settings['outPath']+"style.css", "w")
+	for themeFile in themeFiles:
+		hStyleFile.write(open(settings['themesPath']+settings['theme']+"/"+themeFile, "r").read())
+	hStyleFile.close()
 main()
