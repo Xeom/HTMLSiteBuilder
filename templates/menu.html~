@@ -1,7 +1,5 @@
 <span id="menuHeader">
-  <a href="/">
 {siteHeader}
-  </a>
 </span>
 <ul id="menuBar">
 {buttons}
