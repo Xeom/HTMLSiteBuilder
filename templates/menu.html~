@@ -1,6 +1,0 @@
-<span id="menuHeader">
-{siteHeader}
-</span>
-<ul id="menuBar">
-{buttons}
-</ul>
