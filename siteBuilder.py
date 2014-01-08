@@ -8,7 +8,31 @@ templatesPath = settings['templatesPath']
 
 #parse single entry, add things like images
 def parseEntry(currentEntry, entries):
+	currentEntry['content'] = markdown.markdown(currentEntry['content'])
+
+	#allposts
+	allposts_full = ""
+	allposts_link = ""
+	for entry in entries:
+		if (entry['type'] == "post"):
+			allposts_link += addArgs([
+				["title", entry['title']],
+				["link", entry['slug']]
+			], template("link"))
+
+	#apply to currentEntry
+	currentEntry['content'] = addArgs([
+		["allposts-full", allposts_full],
+		["allposts-link", allposts_link]
+	], currentEntry['content'])
+
 	return currentEntry
+
+def template(path):
+	hFile = open(templatesPath+path+".html", "r")
+	str = hFile.read()
+	hFile.close()
+	return str
 
 def addArgs(args, str):
 	for arg in args:
@@ -21,7 +45,7 @@ def makeFile(currentEntry, entries):
 	
 	#buttons
 	buttonStr = ""
-	buttonTemplate = open(templatesPath+"button.html", "r").read()
+	buttonTemplate = template("button")
 	for entry in entries:
 		if (entry['type'] == "page"):
 			if (entry['slug'] == currentEntry['slug']): classMod = " current"
@@ -32,27 +56,30 @@ def makeFile(currentEntry, entries):
 				["current", classMod]
 			], buttonTemplate)
 			
-	#rest of the menu
+	#menu
 	menuStr = addArgs([
 		["buttons", buttonStr],
 		["siteHeader", settings['siteHeader']]
-	], open(templatesPath+"menu.html", "r").read())
+	], template("menu"))
 
 	#content
-	contentStr = currentEntry['content']
+	contentStr = addArgs([
+		["post", currentEntry['content']],
+		["title", currentEntry['title']]
+	], template("post"))
 	
 	#title
 	titleStr = addArgs([
 		["entryTitle", currentEntry['title']],
 		["siteHeader", settings['siteHeader']]
-	], open(templatesPath+"title.html", "r").read())
+	], template("title"))
 
-	#title made, now put it all together
+	#now put it all together
 	indexStr = addArgs([
 		["menu", menuStr],
 		["title", titleStr],
 		["content", contentStr]
-	], open(templatesPath+"index.html", "r").read())
+	], template("index"))
 
 	#write results to file
 	fileName = currentEntry['fileName']
