@@ -23,4 +23,4 @@ The "content" field should be formatted as markdown.
 
 There are some modules you may include in your content:
 * ***{allposts-full}***: show all posts in their full length [todo]
-* ***{allposts-link}***: show all posts as links [todo]
+* ***{allposts-link}***: show all posts as links
