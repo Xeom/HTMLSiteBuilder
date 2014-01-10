@@ -1,6 +1,6 @@
 Options FollowSymLinks
 RewriteEngine On
-RewriteRule ^testpost testpost.html
 RewriteRule ^home home.html
 RewriteRule ^home index.html
 RewriteRule ^about about.html
+RewriteRule ^testpost testpost.html

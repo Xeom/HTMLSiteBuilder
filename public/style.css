@@ -1,3 +1,86 @@
+#menu {
+	margin-top: 40px;
+	padding-top: 20px;
+	padding-bottom: 1px;
+}
+
+#menuHeader a {
+	margin-left: 10%;
+	font-family: "Georgia", sans-serif;
+	color: #999;
+	text-decoration: none;
+	font-size: 50px;
+	width: 100%;
+}
+
+#menuBar {
+	font-size: 20px;
+
+	padding: 0px;
+	padding-bottom: 33px;
+	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+
+	border-bottom-style: solid;
+	border-width: 5px;
+	border-color: #999;
+
+	width: 80%;
+}
+
+#menuBar li {
+	display: inline;
+}
+
+#menuBar .button {
+	float: right;
+	color: #999;
+	display: inline-block;
+	font-size: 50px;
+	height: auto;
+	line-height: 20px;
+
+	margin-bottom: 25px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 20px;
+
+	padding-bottom: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 3px;
+	text-decoration: none;
+	width: auto;
+	color: #999;
+	display: inline-block;
+	font-size: 20px;
+	font-family: "Century Gothic", sans-serif;
+	height: 27px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+
+	text-align: center;
+
+	position: relative;
+}
+
+#menuBar .button:hover {
+	background-color: #CCC;
+	color: #FFF;
+
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+#menuBar .current,
+#menuBar .current:hover {
+	color: #FFF;
+	background-color: #999;
+
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
 #content .title {
         font-size: 35;
         color: #999;
@@ -127,89 +210,6 @@
 	margin-top: 20px;
 }
 
-#menu {
-	margin-top: 40px;
-	padding-top: 20px;
-	padding-bottom: 1px;
-}
-
-#menuHeader a {
-	margin-left: 10%;
-	font-family: "Georgia", sans-serif;
-	color: #999;
-	text-decoration: none;
-	font-size: 50px;
-	width: 100%;
-}
-
-#menuBar {
-	font-size: 20px;
-
-	padding: 0px;
-	padding-bottom: 33px;
-	margin-top: 10px;
-	margin-left: auto;
-	margin-right: auto;
-
-	border-bottom-style: solid;
-	border-width: 5px;
-	border-color: #999;
-
-	width: 80%;
-}
-
-#menuBar li {
-	display: inline;
-}
-
-#menuBar .button {
-	float: right;
-	color: #999;
-	display: inline-block;
-	font-size: 50px;
-	height: auto;
-	line-height: 20px;
-
-	margin-bottom: 25px;
-	margin-left: 0px;
-	margin-right: 0px;
-	margin-top: 20px;
-
-	padding-bottom: 3px;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-top: 3px;
-	text-decoration: none;
-	width: auto;
-	color: #999;
-	display: inline-block;
-	font-size: 20px;
-	font-family: "Century Gothic", sans-serif;
-	height: 27px;
-	margin-top: 0px;
-	margin-bottom: 0px;
-
-	text-align: center;
-
-	position: relative;
-}
-
-#menuBar .button:hover {
-	background-color: #CCC;
-	color: #FFF;
-
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-#menuBar .current,
-#menuBar .current:hover {
-	color: #FFF;
-	background-color: #999;
-
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
 body {
         background-color: #F1F1F1;
         font-family: Verdana, sans-serif;

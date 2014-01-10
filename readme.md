@@ -8,7 +8,16 @@ This script is written in Python, and is tested with python 3.3.3. It will not w
 	pip3 install markdown
 	pip3 install json
 
-You may need to use "pip" instead of "pip3".
+You may need to use "pip" instead of "pip3". If it still doesn't work, you may need to do:
+
+	sudo apt-get install python3-pip
+
+or your OS' equavilent.
+
+This script relies on Apache's mod_rewrite to create the pretty URL structure. If you don't have mod_rewrite installed, enable it like this:
+
+	sudo a2enmod rewrite
+	sudo service apache2 restart
 
 Documentation
 -------------
