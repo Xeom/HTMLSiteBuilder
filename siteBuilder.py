@@ -1,4 +1,4 @@
-import os, re, markdown, configparser
+import os, re, markdown, configparser, codecs
 import xml.etree.ElementTree as elementTree
 
 settings = configparser.ConfigParser()
@@ -101,8 +101,6 @@ def makeFile(currentEntry, entries):
 	fileName = currentEntry['fileName']
 	fileName = fileName.replace(".xml", ".html")
 
-	print(fileName)
-
 	hFile = open(outPath+fileName, "w")
 	hFile.write(indexStr)
 	hFile.close
@@ -122,7 +120,8 @@ def main():
 
 	entriesSort = []
 	for entryFileName in entries:
-		hEntry = open(rawPath+entryFileName, "r")
+		print("doing "+entryFileName)
+		hEntry = codecs.open(rawPath+entryFileName, "r", encoding="utf-8")
 		entry = etree_to_dict(elementTree.parse(hEntry))
 		hEntry.close()
 		entry['fileName'] = entryFileName

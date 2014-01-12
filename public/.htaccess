@@ -1,6 +1,20 @@
 Options FollowSymLinks
 RewriteEngine On
+RewriteRule ^programming-culture programming-cultures.html
+RewriteRule ^secure-stackloaders secure-stackloaders.html
 RewriteRule ^home home.html
 RewriteRule ^home index.html
+RewriteRule ^worst-code worst-code.html
+RewriteRule ^ridicule-game ridicule-game.html
+RewriteRule ^projects projects.html
 RewriteRule ^about about.html
-RewriteRule ^testpost testpost.html
+RewriteRule ^youtube-rant youtube-rant.html
+RewriteRule ^considered-harmful considered-harmful.html
+RewriteRule ^css-wtf css-wtf.html
+RewriteRule ^drum-mics drum-mics.html
+RewriteRule ^openredstone openredstone.html
+RewriteRule ^rewind-time rewind-time.html
+RewriteRule ^farewell-wordpress farewell-wordpress.html
+RewriteRule ^js-childhood js-childhood.html
+RewriteRule ^programmer-types programmer-types.html
+RewriteRule ^transgenderism transgenderism.html
