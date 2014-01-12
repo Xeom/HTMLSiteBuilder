@@ -1,9 +1,0 @@
-{
-	"siteHeader": "Mort's Ramblings",
-	"rawPath": "raw/",
-	"outPath": "public/",
-	"themesPath": "themes/",
-	"templatesPath": "templates/",
-	"defaultPage": "home",
-	"theme": "plain_blog"
-}

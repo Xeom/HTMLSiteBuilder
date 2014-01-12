@@ -1,7 +1,0 @@
-{
-	"title": "Home",
-	"slug": "home",
-	"sort": 0,
-	"type": "page",
-	"content": "{allposts-link}"
-}

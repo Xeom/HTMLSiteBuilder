@@ -1,6 +1,9 @@
-import os, re, json, markdown
+import os, re, markdown, configparser
+import xml.etree.ElementTree as elementTree
 
-settings = json.load(open("settings.json", "r"))
+settings = configparser.ConfigParser()
+settings.read("settings.cfg")
+settings = settings['DEFAULT']
 
 rawPath = settings['rawPath']
 outPath = settings['outPath']
@@ -8,6 +11,9 @@ templatesPath = settings['templatesPath']
 
 #parse single entry, add things like images
 def parseEntry(currentEntry, entries):
+	if (currentEntry['parsed']):
+		return currentEntry
+
 	currentEntry['content'] = markdown.markdown(currentEntry['content'])
 
 	#allposts
@@ -26,6 +32,7 @@ def parseEntry(currentEntry, entries):
 		["allposts-link", allposts_link]
 	], currentEntry['content'])
 
+	currentEntry['parsed'] = True
 	return currentEntry
 
 def template(path):
@@ -39,6 +46,14 @@ def addArgs(args, str):
 		str = str.replace("{"+arg[0]+"}", arg[1])
 	return str
 
+def etree_to_dict(tree):
+	root = tree.getroot()
+	d = {}
+	for child in root:
+		d[child.tag] = child.text
+	d["parsed"] = False
+	return d
+
 #parse template, returns the completed html file
 def makeFile(currentEntry, entries):
 	currentEntry = parseEntry(currentEntry, entries)
@@ -48,7 +63,8 @@ def makeFile(currentEntry, entries):
 	buttonTemplate = template("button")
 	for entry in entries:
 		if (entry['type'] == "page"):
-			if (entry['slug'] == currentEntry['slug']): classMod = " current"
+			if (entry['slug'] == currentEntry['slug']):
+				classMod = " current"
 			else: classMod = ""
 			buttonStr += addArgs([
 				["link", entry['slug']],
@@ -83,7 +99,10 @@ def makeFile(currentEntry, entries):
 
 	#write results to file
 	fileName = currentEntry['fileName']
-	fileName = fileName.replace("json", "html")
+	fileName = fileName.replace(".xml", ".html")
+
+	print(fileName)
+
 	hFile = open(outPath+fileName, "w")
 	hFile.write(indexStr)
 	hFile.close
@@ -104,11 +123,11 @@ def main():
 	entriesSort = []
 	for entryFileName in entries:
 		hEntry = open(rawPath+entryFileName, "r")
-		entry = json.load(hEntry)
+		entry = etree_to_dict(elementTree.parse(hEntry))
 		hEntry.close()
 		entry['fileName'] = entryFileName
 
-		entriesSort.insert(entry['sort'], entry)
+		entriesSort.insert(int(entry['sort']), entry)
 
 	for entry in entriesSort:
 		makeFile(entry, entriesSort)
