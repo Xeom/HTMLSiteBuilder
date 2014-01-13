@@ -1,0 +1,43 @@
+<entry>
+	<title>Ridicule, my new game</title>
+	<slug>ridicule-game</slug>
+	<sort>2</sort>
+	<type>post</type>
+	<content><![CDATA[
+Recently, I’ve been working on a new game, called ridicule. It’s a basic 2D shooter, where you control a space ship (a triangle) and shoot other space ships (other triangles). The enemies will try to kill you.
+
+As always, I’m writing it in JavaScript, and the game can be found here: [mortie.org/?webapp=ridicule](http://mortie.org/?webapp=ridicule)
+
+As of writing this, there isn’t much to do other than moving around and shooting. There is, however, quite a lot of fun you can have in the javascript console;
+
+Try opening the JS console and write this:
+
+> properties.player.fireSpeed = 0
+
+Then you shoot a bit. And move around. Fun, huh?
+
+If your computer isn’t a beast, it may help to reduce the FPS a bit. Try this:
+
+> properties.FPS = 30
+> 
+> updateGameLoops()
+
+That will set your FPS to 30 (it’s at 120 by default), and then apply the changes by re initiating the game loops.
+
+Another thing you can do, is playing around with the player’s speed and acceleration. Cool values to play around with may be:
+
+> properties.player.speed
+> 
+> properties.player.acceleration
+> 
+> properties.player.rotationSpeed
+> 
+> properties.player.height
+> 
+> properties.player.width
+
+Tweaking bullet speeds may be fun too, with proeprties.bullet.speed – try combining that with properties.player.fireSpeed, play around and have fun! Break the game!
+
+In case you’re interested in the source code, [it’s available on my GitHub page](https://github.com/mortie/ridicule).
+	]]></content>
+</entry>

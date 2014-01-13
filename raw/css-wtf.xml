@@ -1,0 +1,66 @@
+<entry>
+	<title>A small WTF regarding CSS units</title>
+	<slug>css-wtf</slug>
+	<sort>10</sort>
+	<type>post</type>
+	<content><![CDATA[
+CSS. A tool loved by web developers all over the world. It lets us style our HTML easily, and creates somewhat loose coupling between content and layout.
+
+CSS. A tool hated by web developers all over the world. It makes us spend countless hours trying to accomplish what seemed to be the most mundane task.
+
+**Today, CSS got a little bit weirder.**
+
+It all started with me and a discussion between me and a friend, Stef Velzel (or Invalid). He has a website at [ckefworx.com](http://ckefworx.com), in case you're reading this in the year 3026 and he has finally removed that "under construction" banner.
+
+Anyways, Invalid and I was discussing, as we so often do. I had come across [a blog post](http://omnicognate.wordpress.com/2013/01/07/in-css-px-is-not-an-angular-measurement-and-it-is-not-non-linear/) on Reddit claiming that in CSS, one pixel (px) is always 1/96 of an inch. I even found CSS specifications, which supported the statement. Invalid disagreed though, and meant that 1px is always one pixel on the screen, according to his experience.
+
+It turns out I was right. In a sense at least. But so was Invalid. You see, 1px being 1/96 of an inch and 1px being exactly one pixel isn't mutually exclusive. Not with CSS at least.
+
+"But wait", I hear you say. "That doesnt make sense?"
+
+Well, yes it does. Sort of. If you're a mathemagician, you may have figured out this already. The only way this adds up, is if one inch is 96 pixels, 96 points of light on your screen.
+
+Have you spotted the issue here? no? yes? 96 pixels isn't equivalent to 1 inch. Not in a world where pixel density varies wildly from device to device. CSS can't just redefine inches like that can it? I mean, 1 inch is exactly 1 inch, isn't it..?
+
+Well apparently, CSS can indeed just redefine units of measurement like that. 1 inch is 96 dots of light, not 1 inch.
+
+On some deep level, this makes sense. It seems like common sense define units of measurement out from the fundamental unit of the display instead of arbitrarily defined real life measurements. The problem is that it's marketed as inches, centimetres, etc. instead of what it actually is. This causes a lot of confusion.
+
+I should probably add that the spec doesn't state that one inch should be 96 pixels. It rather says that one px should be 1/96 real world inch, which at least makes a little sense. Browser vendors implement it how I described above though, and in the end, that's what matters.
+
+**Update:** I should probably have included some of the tests I did, and some sources.
+
+First off, let's see how a pixel is [defined by the W3C](http://www.w3.org/TR/css3-values/#absolute-lengths):
+
+> The absolute length units are fixed in relation to each other and anchored to some physical measurement. They are mainly useful when the output environment is known. The absolute units consist of the physical units (in, cm, mm, pt, pc) and the px unit: 
+> 
+> ‘cm’:	centimeters
+> 
+> [...]
+> 
+> ‘in’:	inches; 1in is equal to 2.54cm
+> 
+> ‘px’:	pixels; 1px is equal to 1/96th of 1in
+> 
+> [...]
+
+According to that, it would seem like 1 inch is exactly 1 inch, regardless of resolution. 1px should arlso be the same regardless of resolution, as it is defined using inches.
+
+Look at this example element however:
+
+> &lt;div style="background-color: #000; height: 1in; width: 30%"&gt;&lt;/div&gt;
+
+<div style="background-color: #000; height: 1in; width: 1in"></div>
+
+I don't know about your browser, but mine does at least not render that as exactly 1 inch. Have a look at this however:
+
+> &lt;div style="background-color: #00F; width: 1in; height: 1in; display: inline-block"&gt;&lt;/div&gt;
+> &lt;div style="background-color: #F00; width: 96px; height: 96px; display: inline-block"&gt;&lt;/div&gt;
+
+<div style="background-color: #00F; width: 1in; height: 1in; display: inline-block"></div>
+
+<div style="background-color: #F00; width: 96px; height: 96px; display: inline-block"></div>
+
+I don't know with you, but those look fairly similar with all browsers I've tested with. This shows that, regardless of what the CSS spec says, an in isn't an inch, at least not in all browsers. It's 96 pixels.
+	]]></content>
+</entry>

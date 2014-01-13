@@ -1,0 +1,92 @@
+<entry>
+	<title>Yet another "types of programmers"-post</title>
+	<slug>programmer-types</slug>
+	<sort>16</sort>
+	<type>post</type>
+	<content><![CDATA[
+I and some friends were hanging out in a Google Docs-document earlier, and made our own "types of programmers"-list. The result:
+
+**The kinda-master:**
+
+This kind of programmer always assumes they know best, and commits without any testing, often breaking sections of the code. They invent unusual methods of doing things, and insist they are the best, especially when they are not. They are very skilled at many things, and assume this translates to everything.
+
+**The Delusional:**
+
+This kind of programmer takes knowing more than the average person to be knowing more than any person. They code badly and refuse to improve, under the impression everyone else is a moron, especially those who know better than them.
+
+**The Ninja:**
+
+This breed of programmer quietly twiddles their thumbs until their code is due, at which point they promptly ejaculate a pile of code resembling the result of spaghetti being fed through a blender.
+
+**The Bugfixer:**
+
+This kind of programmer does nothing at all to assist in the development of a project, leaving it to someone else, who as a result of having more work will produce a buggy and terrible end project. It is at this point that the bugfixer springs into action, finding single lines of code and suggesting slight improvements, all the while making snobby comments about how they should have been written better.
+
+**The Magician:**
+
+The one you go to whenever you need help, only to get an answer you can’t seem to comprehend. You proceed to assume The Magician is an expert in the field, as he seem to possess some long lost knowledge you never knew existed.
+
+**The Tinkerer:**
+
+The programmer who starts one project, then spends the rest of his life working on said project. The Tinkerer will often end up with a neat end product, but it will be his only product. He will become an expert in any field his project touches, but will know nothing of any other field, save random information he happens to stumble upon.
+
+**The Procrastinator:**
+
+The one who always theorises about great projects. The Procrastinator will rarely get started with a project, and if they do, you can bet your ass it won’t live for more than a week, tops.
+
+**The Perfectionist:**
+
+A close relative of The Procrastinator. There’s one important difference though: while The Procrastinator rarely gets any idea started, The Perfectionist will usually start his projects. The Perfectionist will never get anything done though, as his time doesn’t spent writing code, but rather trying to find ways to make his code perfect.
+
+**The Duct-Tape Programmer:**
+
+The one who tends to get projects done, but usually in a messy manner. The Duct-Tape Programmer is a polar opposite of The Perfectionist and The Procrastinator. Much like The Procrastinator, The Duct-Tape Programmer’s head is sprawling with ideas. The difference is that The Duct-Tape Programmer will immediately start writing code, without thinking through anything. The shortcomings of his code will be fixed with duct tape.
+
+**The Anti Insertionist:**
+
+This kind of programmer relies on others to create a bad codebase, then improves it quickly, ending up with less insertions than deletions. They fix the most bugs and are useful as hell when finishing a project, but are useless by themselves. Since they are able to improve everyone else’s code, they have a higher degree of knowledge of what they are doing than anyone else.
+
+**The Medium-rare:**
+
+Delicious.
+
+**The Spandex:**
+
+The programmer who doesn’t specialise in one field, but rather his best to cover all fields. The Spandex will know something about everything, but a lot about nothing. Jack of all trades, master of none.
+
+**The Delusional Magikarp:**
+
+Is not a programmer but thinks they are programmer. The most common case of this is the front end web developer, who thinks knowing HTML and CSS puts him in the same league as those writing physics engines in C.
+
+**The Newbie:**
+
+The one who has just recently discovered the art of programming. The Newbie is a dangerous beast, his code is usually riddled with bugs, memory leaks, SQL injections and what have you not, but at least his heart is in the right place, and he’s willing to learn.
+
+**The Douchebag:**
+
+The individual who has no good intentions. The Douchebag is often seen writing code which relies on a key value store which can only be interfaced with by writing a distributed Map-Reduce function. To make matters worse, his language of choice is Erlang.
+
+**The Insane:**
+
+Conversations with himself which usually go something like this:
+
+> observation: mort often makes jokes I don’t get.
+> 
+> observation: inv often doesn’t (stop confusing don’t and doesn’t) (sorry D:::) (>:C) get the jokes I make
+> 
+> observation: who the hell are you. < who typed this dunno
+> 
+> who t
+> 
+> she hell are YOUXeooooooolokk swwag
+> 
+> swedgeis this cursor purple???? ANSEWR ME >:L BLEURIOE:( wut color D: But invalid is blue :O WHO IS THAT 
+> 
+> LE PURPLE
+> 
+> I WANT TO BE HEDGEHOG >:LJOP no its not its
+>  bzxcvzxcvzxcvAAAAAAAAAAAAasdlue many dolphin, such wow, much anonymous if you are a hedgehog it is purple Can i haz purple hedgehog no? never
+> 
+> Plox ;n; POWEJPRWEJ D:::::::: BUT HEDGEHOG >:L fack u no not now
+	]]></content>
+</entry>

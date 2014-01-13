@@ -1,0 +1,7 @@
+<entry>
+	<title>Home</title>
+	<slug>home</slug>
+	<sort>0</sort>
+	<type>page</type>
+	<content><![CDATA[{allposts-link}]]></content>
+</entry>

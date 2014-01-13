@@ -1,0 +1,70 @@
+<entry>
+	<title>Projects</title>
+	<slug>projects</slug>
+	<sort>2</sort>
+	<type>page</type>
+	<content><![CDATA[
+## [Drum covers](http://mortie.org/?post=drum_mics)
+
+I play drums, and have recorded a few drum covers:
+
+[Metallica's My Apocalypse](http://www.youtube.com/watch?v=wvhj2aHuqK8)
+
+[Metallica's Die, Die My Darling](http://youtu.be/9eXIgkF-PXo)
+
+[Metallica's Cyanide](http://youtu.be/AssQHZK6IVk)
+
+* * *
+
+## [mortie.org](http://mortie.org)
+
+My website. Until recently a wordpress blog, but I've written my own system now. source code at [GitHub](https://github.com/mortie/blogsoftware).
+
+* * *
+
+## [openredstone.org](http://openredstone.org)
+
+The webpage for Open Redstone Engineers, which I wrote about in "interests". I configured wordpress, modified the CSS to my likings and wrote the articles. I also did the CSS work on the [forums](http://openredstone.org/forums).
+
+* * *
+
+## [My GitHub page](https://github.com/mortie?tab=repositories)
+
+Pretty much all of my projects, even those far from working. Also, source codes.
+
+* * *
+
+## [tequilaJumper](http://mortie.org/?webapp=tequilaJumper)
+
+A game I wrote for Ludum Dare 26 jam. The source code can be found at [GitHub](https://github.com/mortie/tequilaJumper/blob/master/index.html).
+
+* * *
+
+## [Time Ball](http://mortie.org/?webapp=timeBall)
+
+Yet another Ludum Dare game, this time for the LD 27 compo. The source code can be found [here](https://github.com/mortie/10secLD). Also, [more elaborate blog post](?post=what_if_you_could_rewind_time_10_seconds).
+
+* * *
+
+## [Idea generator](http://mortie.org/?webapp=ideaGen)
+
+A funny project. Out of ideas? Try it out!
+
+* * *
+
+## [Ridicule](http://mortie.org/?webapp=ridicule)
+
+This project is still fairly unfinished. Wrote [a blog post regarding it](?post=ridicule_my_new_game), read that for more info.
+
+* * *
+
+## [Brainfuck](http://mortie.org/?webapp=brainfuck)
+
+Some brainfuck related things.
+
+Brainfuck is a wonderful programming language, concisting of only 8 symbols; , . + - [ ] < >. Using those characters, you can make some quite interesting programs.
+
+The projects consist of a brainfuck interpreter, aswell as a thing
+which turns regular text into brainfuck code.
+	]]></content>
+</entry>
