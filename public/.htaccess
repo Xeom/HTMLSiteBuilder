@@ -1,6 +1,6 @@
 Options FollowSymLinks
 RewriteEngine On
-RewriteRule ^programming-culture programming-cultures.html
+RewriteRule ^programming-cultures programming-cultures.html
 RewriteRule ^secure-stackloaders secure-stackloaders.html
 RewriteRule ^home home.html
 RewriteRule ^home index.html

@@ -3,5 +3,5 @@
 	<slug>home</slug>
 	<sort>0</sort>
 	<type>page</type>
-	<content><![CDATA[{allposts-link}]]></content>
+	<content><![CDATA[{allposts-short}]]></content>
 </entry>

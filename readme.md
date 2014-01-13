@@ -34,5 +34,6 @@ Each post or page is stored in an xml file like so:
 	</entry>
 
 There are some modules you may include in your content:
-* ***{allposts-full}***: show all posts in their full length [todo]
+* ***{allposts}***: show all posts in their full length
+* ***{allposts-short]***: show the beginning of all posts (amount of words to show can be changed in settings.cfg)
 * ***{allposts-link}***: show all posts as links

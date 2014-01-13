@@ -17,30 +17,43 @@ def parseEntry(currentEntry, entries):
 	currentEntry['content'] = markdown.markdown(currentEntry['content'])
 
 	#allposts
-	allposts_full = ""
 	allposts_link = ""
+	allposts = ""
+	allposts_short = ""
 	for entry in entries:
 		if (entry['type'] == "post"):
-			entryStr = addArgs({
-				"title": entry['title'],
-				"link": getLink(entry)
-			}, template("link"))
+			if ("{allposts-link}" in currentEntry['content']):
+				allposts_link += addArgs({
+					"content": addArgs({
+						"title": entry['title'],
+						"link": getLink(entry)
+					}, template("link"))
+				}, template("listEntry"))
 
-			entryStr = addArgs({
-				"content": entryStr
-			}, template("listEntry"))
+			if ("{allposts}" in currentEntry['content']):
+				allposts += addArgs({
+					"title": entry['title'],
+					"content": parseEntry(entry, entries)['content'],
+					"link": getLink(entry)
+				}, template("post"))
 
-			allposts_link += entryStr
+			if ("{allposts-short}" in currentEntry['content']):
+				arr = parseEntry(entry, entries)['content'].split(" ")
+				str = ""
+				for i in range(0, int(settings['allposts_short_length'])):
+					str += arr[i]+" "
 
-	allposts_link = addArgs({
-		"content": allposts_link
-	}, template("list"))
-			
+				allposts_short += addArgs({
+					"title": entry['title'],
+					"content": str,
+					"link": getLink(entry)
+				}, template("shortPost"))
 
 	#apply to currentEntry
 	currentEntry['content'] = addArgs({
-		"allposts-full": allposts_full,
-		"allposts-link": allposts_link
+		"allposts-link": allposts_link,
+		"allposts": allposts,
+		"allposts-short": allposts_short
 	}, currentEntry['content'])
 
 	currentEntry['parsed'] = True
@@ -79,10 +92,10 @@ def makeFile(currentEntry, entries):
 	buttonStr = ""
 	for entry in entries:
 		if (entry['type'] == "page"):
-			if (entry['slug'] == currentEntry['slug']): classMod = " current"
+			if (entry == currentEntry): classMod = " current"
 			else: classMod = ""
 			buttonStr += addArgs({
-				"link": getLink(currentEntry),
+				"link": getLink(entry),
 				"title": entry['title'],
 				"current": classMod
 			}, template("button"))
@@ -95,7 +108,7 @@ def makeFile(currentEntry, entries):
 
 	#content
 	contentStr = addArgs({
-		"post": currentEntry['content'],
+		"content": currentEntry['content'],
 		"title": addArgs({
 			"link": getLink(currentEntry),
 			"title": currentEntry['title']
@@ -144,6 +157,7 @@ def main():
 		hEntry = codecs.open(rawPath+entryFileName, "r", encoding="utf-8")
 		entry = etree_to_dict(elementTree.parse(hEntry))
 		hEntry.close()
+
 		entry['fileName'] = entryFileName
 
 		entriesSort.insert(int(entry['sort']), entry)
