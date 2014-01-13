@@ -23,7 +23,7 @@ def parseEntry(currentEntry, entries):
 		if (entry['type'] == "post"):
 			allposts_link += addArgs([
 				["title", entry['title']],
-				["link", entry['slug']]
+				["link", getLink(entry)]
 			], template("link"))
 
 	#apply to currentEntry
@@ -54,6 +54,12 @@ def etree_to_dict(tree):
 	d["parsed"] = False
 	return d
 
+def getLink(entry):
+	if (settings['mod_rewrite'] == "true"):
+		return entry['slug']
+	else:
+		return entry['slug']+".html"
+
 #parse template, returns the completed html file
 def makeFile(currentEntry, entries):
 	currentEntry = parseEntry(currentEntry, entries)
@@ -67,7 +73,7 @@ def makeFile(currentEntry, entries):
 				classMod = " current"
 			else: classMod = ""
 			buttonStr += addArgs([
-				["link", entry['slug']],
+				["link", getLink(entry)],
 				["title", entry['title']],
 				["current", classMod]
 			], buttonTemplate)
@@ -106,15 +112,17 @@ def makeFile(currentEntry, entries):
 	hFile.close
 
 	#write rule to htaccess
-	with open(outPath+".htaccess", "a") as htaccess:
-		htaccess.write("RewriteRule ^"+currentEntry['slug']+" "+fileName+"\r\n")
-		htaccess.close()
+	if (settings['mod_rewrite'] == "true"):
+		with open(outPath+".htaccess", "a") as htaccess:
+			htaccess.write("RewriteRule ^"+currentEntry['slug']+" "+fileName+"\r\n")
+			htaccess.close()
 
 def main():
-	with open(outPath+".htaccess", "w") as htaccess:
-		htaccess.write("Options FollowSymLinks\r\n")
-		htaccess.write("RewriteEngine On\r\n")
-		htaccess.close()
+	if (settings['mod_rewrite'] == "true"):
+		with open(outPath+".htaccess", "w") as htaccess:
+			htaccess.write("Options FollowSymLinks\r\n")
+			htaccess.write("RewriteEngine On\r\n")
+			htaccess.close()
 
 	entries = os.listdir(rawPath)
 

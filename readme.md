@@ -19,6 +19,8 @@ This script relies on Apache's mod_rewrite to create the pretty URL structure. I
 	sudo a2enmod rewrite
 	sudo service apache2 restart
 
+Alternatively, you can set the "mod_rewrite" option to "false" if you don't use apache, or for some reason can't use mod_rewrite. The only difference is that it will append a ".html" to all your links.
+
 Documentation
 -------------
 Each post or page is stored in an xml file like so:
