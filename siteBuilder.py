@@ -21,16 +21,27 @@ def parseEntry(currentEntry, entries):
 	allposts_link = ""
 	for entry in entries:
 		if (entry['type'] == "post"):
-			allposts_link += addArgs([
-				["title", entry['title']],
-				["link", getLink(entry)]
-			], template("link"))
+			entryStr = addArgs({
+				"title": entry['title'],
+				"link": getLink(entry)
+			}, template("link"))
+
+			entryStr = addArgs({
+				"content": entryStr
+			}, template("listEntry"))
+
+			allposts_link += entryStr
+
+	allposts_link = addArgs({
+		"content": allposts_link
+	}, template("list"))
+			
 
 	#apply to currentEntry
-	currentEntry['content'] = addArgs([
-		["allposts-full", allposts_full],
-		["allposts-link", allposts_link]
-	], currentEntry['content'])
+	currentEntry['content'] = addArgs({
+		"allposts-full": allposts_full,
+		"allposts-link": allposts_link
+	}, currentEntry['content'])
 
 	currentEntry['parsed'] = True
 	return currentEntry
@@ -42,8 +53,8 @@ def template(path):
 	return str
 
 def addArgs(args, str):
-	for arg in args:
-		str = str.replace("{"+arg[0]+"}", arg[1])
+	for key, val in args.items():
+		str = str.replace("{"+key+"}", val)
 	return str
 
 def etree_to_dict(tree):
@@ -66,42 +77,43 @@ def makeFile(currentEntry, entries):
 	
 	#buttons
 	buttonStr = ""
-	buttonTemplate = template("button")
 	for entry in entries:
 		if (entry['type'] == "page"):
-			if (entry['slug'] == currentEntry['slug']):
-				classMod = " current"
+			if (entry['slug'] == currentEntry['slug']): classMod = " current"
 			else: classMod = ""
-			buttonStr += addArgs([
-				["link", getLink(entry)],
-				["title", entry['title']],
-				["current", classMod]
-			], buttonTemplate)
+			buttonStr += addArgs({
+				"link": getLink(currentEntry),
+				"title": entry['title'],
+				"current": classMod
+			}, template("button"))
 			
 	#menu
-	menuStr = addArgs([
-		["buttons", buttonStr],
-		["siteHeader", settings['siteHeader']]
-	], template("menu"))
+	menuStr = addArgs({
+		"buttons": buttonStr,
+		"siteHeader": settings['siteHeader']
+	}, template("menu"))
 
 	#content
-	contentStr = addArgs([
-		["post", currentEntry['content']],
-		["title", currentEntry['title']]
-	], template("post"))
+	contentStr = addArgs({
+		"post": currentEntry['content'],
+		"title": addArgs({
+			"link": getLink(currentEntry),
+			"title": currentEntry['title']
+		}, template("link"))
+	}, template("post"))
 	
 	#title
-	titleStr = addArgs([
-		["entryTitle", currentEntry['title']],
-		["siteHeader", settings['siteHeader']]
-	], template("title"))
+	titleStr = addArgs({
+		"entryTitle": currentEntry['title'],
+		"siteHeader": settings['siteHeader']
+	}, template("title"))
 
 	#now put it all together
-	indexStr = addArgs([
-		["menu", menuStr],
-		["title", titleStr],
-		["content", contentStr]
-	], template("index"))
+	indexStr = addArgs({
+		"menu": menuStr,
+		"title": titleStr,
+		"content": contentStr
+	}, template("index"))
 
 	#write results to file
 	fileName = currentEntry['fileName']
