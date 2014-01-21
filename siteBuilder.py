@@ -17,9 +17,9 @@ def parseEntry(currentEntry, entries):
 	currentEntry['content'] = markdown.markdown(currentEntry['content'])
 
 	#allposts
-	allposts_link = ""
-	allposts = ""
-	allposts_short = ""
+	allposts_link = []
+	allposts = []
+	allposts_short = []
 	for entry in entries:
 		if (entry['type'] == "post"):
 			if ("{allposts-link}" in currentEntry['content']):
@@ -51,25 +51,23 @@ def parseEntry(currentEntry, entries):
 
 	#apply to currentEntry
 	currentEntry['content'] = addArgs({
-		"allposts-link": allposts_link,
-		"allposts": allposts,
-		"allposts-short": allposts_short
+		"allposts-link": ''.join(allposts_link),
+		"allposts": ''.join(allposts),
+		"allposts-short": ''.join(allposts_short)
 	}, currentEntry['content'])
 
 	currentEntry['parsed'] = True
 	return currentEntry
 
 def template(path):
-	hFile = open(templatesPath+path+".html", "r")
+	hFile = open(templatesPath+path+".html")
 	str = hFile.read()
 	hFile.close()
 	return str
 
 def addArgs(args, str):
-	for key, val in args.items():
-		str = str.replace("{"+key+"}", val)
-	return str
-
+	return str.format(**args)#This will break if there are things in {}s which are not in args
+		
 def etree_to_dict(tree):
 	root = tree.getroot()
 	d = {}
@@ -89,7 +87,7 @@ def makeFile(currentEntry, entries):
 	currentEntry = parseEntry(currentEntry, entries)
 	
 	#buttons
-	buttonStr = ""
+	buttonStr = []
 	for entry in entries:
 		if (entry['type'] == "page"):
 			if (entry == currentEntry): classMod = " current"
@@ -99,7 +97,8 @@ def makeFile(currentEntry, entries):
 				"title": entry['title'],
 				"current": classMod
 			}, template("button"))
-			
+	
+	buttonStr = ''.join(buttonStr)		
 	#menu
 	menuStr = addArgs({
 		"buttons": buttonStr,
@@ -172,6 +171,6 @@ def main():
 	themeFiles = os.listdir(settings['themesPath']+settings['theme'])
 	hStyleFile = open(settings['outPath']+"style.css", "w")
 	for themeFile in themeFiles:
-		hStyleFile.write(open(settings['themesPath']+settings['theme']+"/"+themeFile, "r").read())
+		hStyleFile.write(open(settings['themesPath']+settings['theme']+"/"+themeFile).read())
 	hStyleFile.close()
 main()
